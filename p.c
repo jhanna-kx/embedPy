@@ -64,7 +64,7 @@ Z O ok(K x){P(pq(x),kget(x))P(gnull(x),Py_None)P(xt<0,-128==xt?PyErr_Format(PyEx
 Z O nk(K x){O r;npy_intp n=xn/*q<3?*/;R r=PyArray_SimpleNewFromData(1,&n,pynt[xt],xG),PyArray_SetBaseObject((A)r,pwrap(x)),PyArray_CLEARFLAGS((A)r,NPY_ARRAY_WRITEABLE),r;}
 
 #define Oo O o;P(!(o=kget(x)),E(type))
-#define Ro(o) {PyErr_Clear();R ko(o)?:PE;}
+#define Ro(o) {PyErr_Clear();O0(ko(o));}
 #define X0(a) {typeof(a)r=a;r0(x);R r;}
 #define O0(a) {typeof(a)r=a;Py_DECREF(o);R r?:PE;}
 Z K2(runs){P(xt!=-KJ||y->t!=KC,E(type))J j=xj;C z=0;r1(y);x=ja(&y,&z);x==y?--xn:r0(y);PyErr_Clear();O o=PyRun_String((S)xG,j?Py_eval_input:Py_file_input,d,d);r0(x);R ko(o)?:PE;} //evaluate a string, x, returning a foreign.  $[y;evaluate;runasfile]   TODO check return
@@ -74,7 +74,7 @@ Z K2(getattr){P(y->t!=-KS,E(type))Oo;O f=PyObject_GetAttrString(o,TX(S,y));P(!f,
 Z K3(call){P(y->t<0,E(type))O f=kget(x),o,s,t;P(!PyCallable_Check(f),E(type))t=pq(z)?kget(y):atup(y);CPO(t,E(pyerr),Py_DECREF(f))s=pq(z)?kget(z):odict(z);CPO(s,E(pyerr),Py_DECREF(f);Py_DECREF(t))o=PyObject_Call(f,t,s);Py_DECREF(t);Py_DECREF(s);Py_DECREF(f);P(!o,PE)R ko(o);}//call a foreign, x, with positional args y and keyword args z
 Z K1(repr){O o;K r;P(!pq(x),E(type))P(!(o=PyObject_Repr(kget(x))),PE)r=koC(o);Py_DECREF(o);R r;}//return a string like repr(x)
 Z K1(getseq){Oo;O0(kseq(o))}//return an array of foreigns from x. x should be a sequence
-#define GX(x) Z K1(get##x){Oo;R ko##x(o);}
+#define GX(x) Z K1(get##x){Oo;O0(ko##x(o));}
 GX(b)GX(none)GX(j)GX(f)GX(G)GX(C)GX(buffer)//these functions return a foreign (x) as a bool, none, long, float, G, C or buffer(G)
 #define TY(x) {H h=x;r=ja(&r,&h);}
 #define CH(x,y) if(CK(x)(o))TY(y)
@@ -85,9 +85,9 @@ Z K1(q2py){O o=ok(x);P(!o,PE)R ko(o);}//take a q value and return an equivalent 
 Z K1(key){Oo;Co(Mapping)Ro(PyMapping_Keys(o))}//return the keys of a dictionary, x
 Z K1(value){Oo;Co(Mapping)Ro(PyMapping_Values(o))}//return the values of a dictionary, x
  K dim(O o){A a=(A)o;I n=PyArray_NDIM(a);K x=ktn(KJ,n);DO(n,xJ[i]=PyArray_DIMS(a)[i]);R x;}
-Z K1(getarraydims){Oo;Co(Array)R dim(o);}//for an array, return an array of "j" describing the dims (or shape) of x
+Z K1(getarraydims){Oo;Co(Array)O0(dim(o));}//for an array, return an array of "j" describing the dims (or shape) of x
  K arr(O o,J m,J n){A a=(A)o;I t=npyt(PyArray_TYPE(a));P(!t,E(type))I z=zh[t];P(m<0,E(index));P(n<0||PyArray_NBYTES(a)<z*(m+n),E(length))K x=ktn(t,n);memcpy(xG,PyArray_DATA(a)+m*z,n*z);R x;}
-Z K3(getarray){Oo;Co(Array)P(y->t!=-KJ||z->t!=-KJ,E(type))R arr(o,y->j,z->j);}//for an array, x, return a q list
+Z K3(getarray){Oo;Co(Array)P(y->t!=-KJ||z->t!=-KJ,E(type))O0(arr(o,y->j,z->j));}//for an array, x, return a q list
 Z K1(get){P(xt!=-KS,E(type));O o=PyDict_GetItemString(d,xs);;P(o,(Py_INCREF(o),ko(o)))R E(item);}//get a python variable named by x (symbol) in the __main__ module
 Z K1(init){P(Py_IsInitialized(),0);if(RP)Py_SetPythonHome(PH);Py_Initialize();PySys_SetArgvEx(0,0,0);d=PyModule_GetDict(M=PyImport_AddModule("__main__"));m=ko(M);dyl(DY);import_array1(E(numpy));R 0;}
 #define sdl(f,n) (js(&x,ss(#f)),jk(&y,dl(f,n)));
