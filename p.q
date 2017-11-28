@@ -1,7 +1,9 @@
 if[system["s"]|0>system"p";'"slaves or multithreaded input not currently supported"];
 .p:(`:./p 2:`lib,1)`
 \d .p
-e:{x[0]y;}runs
+ei:{n:`$(2+x)_(y?"(")#y;eo y _ x;n set .p.get[n]value y x;}
+eo:{x[0]y;}runs
+e:{$["def"~3#x;$[x[3]in"<*>";ei 3;eo];"class"~5#x;$[x[5]in"*>";ei 5;eo];eo]x}
 .p.eval:runs 1
 
 k)c:{'[y;x]}/|:         / compose list of functions
