@@ -39,9 +39,34 @@ i.isf:isp
 i.isw:{$[105=type x;i.wf~$[104=type u:first get x;first get u;0b];0b]}
 i.isc:{$[105=type x;$[last[u:get x]~ce 1#`.p.q2pargs;1b;0b];0b]}
 setattr:{[f;x;y;z]f[x;y;z];}import[`builtins]`:setattr
-
 / Calling python functions
 pyfunc:{if[not i.isf x;'`type];ce .[.p.call x],`.p.q2pargs}
+/ wrapper for packages/modules TODO anythin non callable could be wrapped
+ism:.p.import[`inspect;`:ismodule;<]
+ilen:.p.import[`builtins;`:len;<];
+p)def< varsk(x):return list(vars(x).keys())
+p)def* varsv(x):return list(vars(x).values())
+vars:{
+ k:`$varsk x;
+ / want this as fast as possible so use low level call
+ gv:.p.call[(u:varsv x)[`:__getitem__]`.][;()!()];
+ v:gv each enlist each til ilen u;
+ (`,k i)!enlist[(::)],v i:sn k}
+/ sort ordering of module entries, alphabetic followed by any _* names TODO
+/sn:{x?(x iasc lower x where not i),x iasc lower x where i:x like"_*"}
+sn:{til count x}
+wrapm:{[s;x]$[ism x;[r:bd[s]x;JJ,:enlist x;r];(s;.p.wrap x)]}
+bd:{[s;x]
+ m:where ism each`_c:vars x;
+ r:.p.wrap each`_c;
+ r[`]:(::);
+ sn:@[s;x;.p.wrap];
+ rn:(s;sn)ff/(r m@:where m in key r)@\:`.;
+ :(rn 0;@[r;m;{x y@`.}rn 0])}
+ff:{$[y in key x 0;x;[r:wrapm[x 1]y;2#enlist@[r 0;y;:;r 1]]]}
+module:{wrapm[()!();$[.p.i.isw x;x`.;.p.i.isf x;x;'`type]]1}
+
+
 q2pargs:{
  if[x~enlist(::);:(();()!())]; / zero args
  hd:(k:i.gpykwargs x)0; 
