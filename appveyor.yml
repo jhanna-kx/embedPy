@@ -20,9 +20,11 @@ build_script:
 
     move p.dll w64 
 after_build:
+ on:
+  appveyor_repo_tag: true
 - cmd: >-
     
-    7z a embedPy_windows-%APPVEYOR_BUILD_VERSION%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md
+    7z a embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md
 
     appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip
 deploy:
