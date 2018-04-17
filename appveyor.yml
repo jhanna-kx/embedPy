@@ -11,10 +11,16 @@ build_script:
 
     curl -fsSL -o k.h https://github.com/KxSystems/kdb/raw/master/c/c/k.h 
 
-    type k.h
-
     curl -fsSL -o q.lib https://github.com/KxSystems/kdb/raw/master/w64/q.lib
 
     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
+    mkdir w64 
+
     cl /LD /DKXVER=3 /Fep.dll /O2 py.c q.lib
+
+    move p.dll w64 
+after_build:
+- cmd: >-
+    
+    7z a embedPy_windows-%APPVEYOR_BUILD_VERSION%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md
