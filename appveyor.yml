@@ -6,7 +6,7 @@ branches:
   - travis
 artifacts:
 - path: embedPy_windows-$(appveyor_build_version).zip
-- name: embedPy_windows-$(appveyor_build_version)
+  name: embedPy_windows-$(appveyor_build_version)
 skip_non_tags: false
 platform: x64
 build_script:
