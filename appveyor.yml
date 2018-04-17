@@ -9,11 +9,11 @@ platform: x64
 build_script:
 - cmd: >-
 
-    curl -o k.h https://github.com/KxSystems/kdb/raw/master/c/c/k.h 
+    curl -fsSL-o k.h https://github.com/KxSystems/kdb/raw/master/c/c/k.h 
 
     type k.h
 
-    curl -o q.lib https://github.com/KxSystems/kdb/raw/master/w64/q.lib
+    curl -fsSL -o q.lib https://github.com/KxSystems/kdb/raw/master/w64/q.lib
 
     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
