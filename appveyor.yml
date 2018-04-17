@@ -11,3 +11,7 @@ build_script:
     wget https://github.com/KxSystems/kdb/raw/master/c/c/k.h -Outfile k.h
 
     wget https://github.com/KxSystems/kdb/raw/master/w64/q.lib -Outfile q.lib
+
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+
+    cl /LD /DKXVER=3 /Fep.dll /O2 py.c py.h k.h q.lib
