@@ -19,3 +19,4 @@ deploy:
  skip_cleanup: true
  on:
   branch: travis
+  tags: true
