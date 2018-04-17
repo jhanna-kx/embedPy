@@ -5,12 +5,11 @@ branches:
 skip_non_tags: false
 platform: x64
 build_script:
-- ps: >-
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+- cmd: >-
 
-    wget https://github.com/KxSystems/kdb/raw/master/c/c/k.h -Outfile k.h
+    curl -o k.h https://github.com/KxSystems/kdb/raw/master/c/c/k.h 
 
-    wget https://github.com/KxSystems/kdb/raw/master/w64/q.lib -Outfile q.lib
+    culr -o q.lib https://github.com/KxSystems/kdb/raw/master/w64/q.lib
 
     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
