@@ -17,3 +17,5 @@ deploy:
  file_glob: true
  file: embedPy_*.zip
  skip_cleanup: true
+ on:
+  branch: travis
