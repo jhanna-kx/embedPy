@@ -7,5 +7,7 @@ platform: x64
 build_script:
 - ps: >-
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
     wget https://github.com/KxSystems/kdb/raw/master/c/c/k.h -Outfile k.h
+
     wget https://github.com/KxSystems/kdb/raw/master/w64/q.lib -Outfile q.lib
