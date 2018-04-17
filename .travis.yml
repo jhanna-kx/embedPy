@@ -5,8 +5,17 @@ os:
 script:
 - make p.so
 - echo "Preparing version $TRAVIS_BRANCH-$TRAVIS_COMMIT"
-- zip -r embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.zip p.q p.k test.q tests m64 l64 LICENSE README.md || true
+- zip -r embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.zip p.q p.k test.q tests m64/p.so l64/p.so LICENSE README.md || true
 - echo "Packaged as embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.zip"
 compiler:
 - clang
 - gcc
+deploy:
+ provider: releases
+ api_key:
+  secure: Vrq7k6yP1DrLlIKHnyeMb4VQuG3EPWwL9/wJsG4MYWCmohLOrGUnLFYl9zSy7Dj6qCXspT7pIgtMaSFspnf4xrpH7ZYjZ9BFQMCKWXVYuFhiMBVJ7P4U8uE7PGdI5gCppr4YSOM+/3HE1hNrzaMxAS1OJ3DWe/wL/3KZ9oq/bY1ySVhZE08GUT6lb52d6fieMwlGGmBSEIVBg9pjz+EA7DUmViJcVF+Sk9oP76693xgfPttfthkN8nqStJNMxg+5868X2r4vSQbTCC6x1t2QTepYH+EdTaSljvXQcFoaHxRfA5v5ZDsPrYx6EIQr7P3tQS7Yu3pUi23qwfoBTpTOaQNX/zxGj5CkbTZNMh6JBikhO91ARqi2n6Wl5z4cIreEStjLoPklgEviLOQ35QlFVDctZp4/x7qPpObQu9/jVRQxCOh0rJrph8wjpfh/oxnw8m/2OXqAbkeBB9diGZALJOosE15Ny52vWywq/+rLhSd8Q8h/L5YiUbsXfW+jdksP3OJbIr8/i4lXzM6KC8kY0+JYswdOZjh8ad1uUTBwAwkWZ6gJqZ4RG+OFpnjeRP1OyTeqoBtqFgEisB9Xsoc2bQ8WmqmHOZREi5Z9Tvouri0KOY+VONy9jkjUGGZFg3Ozf4unkHRjUNAzqz1RYwLpuIfNqCwf76cBuARzRI9RXEc=
+ file_glob: true
+ file: embedPy_*.zip
+ skip_cleanup: true
+ on:
+  tags: true
