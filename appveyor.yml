@@ -1,0 +1,8 @@
+version: 1.0.{build}
+branches:
+  only:
+  - travis
+skip_non_tags: true
+platform: x64
+build:
+  verbosity: minimal
