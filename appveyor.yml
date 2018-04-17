@@ -9,7 +9,7 @@ platform: x64
 build_script:
 - cmd: >-
 
-    curl -fsSL-o k.h https://github.com/KxSystems/kdb/raw/master/c/c/k.h 
+    curl -fsSL -o k.h https://github.com/KxSystems/kdb/raw/master/c/c/k.h 
 
     type k.h
 
