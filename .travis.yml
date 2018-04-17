@@ -4,3 +4,6 @@ os:
 - osx
 script:
 - make p.so
+compiler:
+  - clang
+  - gcc
