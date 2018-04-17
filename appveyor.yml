@@ -4,6 +4,9 @@ image:
 branches:
   only:
   - travis
+artifacts:
+- path: embedPy_windows-$(appveyor_build_version).zip
+- name: embedPy_windows-$(appveyor_build_version)
 skip_non_tags: false
 platform: x64
 build_script:
@@ -24,3 +27,5 @@ after_build:
 - cmd: >-
     
     7z a embedPy_windows-%APPVEYOR_BUILD_VERSION%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md
+
+    appveyor PushArtifact embedPy_windows-%APPVEYOR_BUILD_VERSION%.zip
