@@ -30,8 +30,7 @@ after_build:
 deploy:
  release: $(appveyor_repo_tag_name)
  provider: GitHub
- auth_token:
-  secure: Rmjr/Qu2PxeLabbLOSZbd8h5ThT0TGmu3iWF67kwup8CAjWQ4BX3RyfiQt5gPm4s
+ auth_token: $GITHUBTOKEN
  prerelease: true
  force_update: true
  on:
