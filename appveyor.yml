@@ -23,7 +23,7 @@ after_build:
 - cmd: >-
 
     echo tag name is %APPVEYOR_REPO_TAG_NAME%
-    if %PPVEYOR_REPO_TAG%==true (
+    if %APPVEYOR_REPO_TAG%==true (
     
         7z a embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md
 
