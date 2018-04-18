@@ -3,7 +3,7 @@ image:
 - Visual Studio 2017
 artifacts:
 - path: embedPy_windows-$(appveyor_repo_tag_name).zip
-skip_non_tags: true
+skip_non_tags: false
 platform: x64
 build_script:
 - cmd: >-
