@@ -5,18 +5,21 @@ os:
 script:
 - make p.so
 - echo "Preparing version $TRAVIS_BRANCH-$TRAVIS_COMMIT"
-- zip -r embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.zip p.q p.k test.q tests m64/p.so l64/p.so LICENSE README.md || true
+- zip -r embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.zip p.q p.k test.q tests m64/p.so
+  l64/p.so LICENSE README.md || true
 - echo "Packaged as embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.zip"
 compiler:
 - clang
 - gcc
 deploy:
- provider: releases
- api_key:
-  secure: "NFeVGp67Z7cd7W2frAifWgKB9ugz7OH9mvPd2XM7tKH5errifQ5JCQZjeppkhq9AKu/aQywo93+2s8IBSxoH/WqWtRUJ2s8+/GzDr+OVQh+0eKs2hEb2G5ktP7TFfhooywxD9NVjhhK8mEqJCSkjw3bapyWS8SQw9lf0e35zl/+LylWpREheCI7hDO+AcESxy/hKIzo6E8g8w9a92juGZM7iB0YkH9n7B1RHbnimo0YHsvAHL4kivhAWE6CxvfOlfRP/5vDkIgsHPLzg/kVeuR1K5ayXTFMSspbaqE6q/Fpm/e1OVqYEmaE0tz2Oasg+O955mZC0WT6kteObCWnyScaXUm4ge0DEdYSKSCeXeXkupYI/NzKr972slmrq0GIzjq7lAnFhCTxKh2iXlFDF1NhepqRX7PgTA6zjC3PXMi0ZjZ27oQ4LVVNXKZWq1xPsuP5+qIhumG9VbnpnPGs9eo0qYQv87K6FrqeIijntjBKuir2HgWHNP4Enfdq8hwUx9biLyAlEI7YJ0PIsTejtwkSf4PuRx3/kSp5G9lKLnXP2bn4a9uu7ycSFtXadrN0AXXVXI6s7v5ntuVvnfyJXsaLHOzS5bqnb2TyrIzuQ2dgBgbszhP8BaTFkXDPL9UILclIfBTBhfieVSGcP6eCp7CiSSoQBxmAkFrvJxTP137o="
- file_glob: true
- file: embedPy_*.zip
- skip_cleanup: true
- on:
-  branch: travis
-  tags: true
+  provider: releases
+  api_key:
+    secure: NFeVGp67Z7cd7W2frAifWgKB9ugz7OH9mvPd2XM7tKH5errifQ5JCQZjeppkhq9AKu/aQywo93+2s8IBSxoH/WqWtRUJ2s8+/GzDr+OVQh+0eKs2hEb2G5ktP7TFfhooywxD9NVjhhK8mEqJCSkjw3bapyWS8SQw9lf0e35zl/+LylWpREheCI7hDO+AcESxy/hKIzo6E8g8w9a92juGZM7iB0YkH9n7B1RHbnimo0YHsvAHL4kivhAWE6CxvfOlfRP/5vDkIgsHPLzg/kVeuR1K5ayXTFMSspbaqE6q/Fpm/e1OVqYEmaE0tz2Oasg+O955mZC0WT6kteObCWnyScaXUm4ge0DEdYSKSCeXeXkupYI/NzKr972slmrq0GIzjq7lAnFhCTxKh2iXlFDF1NhepqRX7PgTA6zjC3PXMi0ZjZ27oQ4LVVNXKZWq1xPsuP5+qIhumG9VbnpnPGs9eo0qYQv87K6FrqeIijntjBKuir2HgWHNP4Enfdq8hwUx9biLyAlEI7YJ0PIsTejtwkSf4PuRx3/kSp5G9lKLnXP2bn4a9uu7ycSFtXadrN0AXXVXI6s7v5ntuVvnfyJXsaLHOzS5bqnb2TyrIzuQ2dgBgbszhP8BaTFkXDPL9UILclIfBTBhfieVSGcP6eCp7CiSSoQBxmAkFrvJxTP137o=
+  file_glob: true
+  file: embedPy_*.zip
+  skip_cleanup: true
+  on:
+    tags: true
+notifications:
+  slack:
+    secure: $KXSLACK
