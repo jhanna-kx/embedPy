@@ -22,12 +22,12 @@ build_script:
 after_build:
 - cmd: >-
     
-    7z a embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md
+    7z a embedPy_windows-%APPVEYOR_REPO_BRANCH%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md
 
-    appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip
+    appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_BRANCH%.zip
 deploy:
  release: $(appveyor_repo_tag_name)
- description: embedPy-$(appveyor_repo_tag_name)
+ description: embedPy-$(appveyor_repo_branchn)
  provider: GitHub
  auth_token:
   secure: Rmjr/Qu2PxeLabbLOSZbd8h5ThT0TGmu3iWF67kwup8CAjWQ4BX3RyfiQt5gPm4s
