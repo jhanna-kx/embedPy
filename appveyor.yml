@@ -31,8 +31,6 @@ deploy:
  release: $(appveyor_repo_tag_name)
  provider: GitHub
  auth_token: $(GITHUBTOKEN)
- prerelease: true
- force_update: true
  on:
   appveyor_repo_tag: true
  
