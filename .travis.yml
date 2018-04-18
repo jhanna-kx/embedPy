@@ -20,4 +20,7 @@ deploy:
   on:
     tags: true
 notifications:
-  slack: $KXSLACK
+  slack:
+   rooms:
+    - $KXSLACK
+   on_success: always
