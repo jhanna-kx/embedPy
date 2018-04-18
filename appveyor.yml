@@ -22,7 +22,7 @@ build_script:
 after_build:
 - cmd: >-
 
-    echo %APPVEYOR_REPO_TAG%
+    echo tag name is %APPVEYOR_REPO_TAG_NAME%
     
     7z a embedPy_windows-%APPVEYOR_REPO_BRANCH%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md
 
