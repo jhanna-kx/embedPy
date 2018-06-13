@@ -4,6 +4,10 @@ os:
 - osx
 git:
   depth: 1
+addons:
+  apt:
+    packages:
+      python3-pip  
 script:
 - python3 --version
 - pip3 --version
