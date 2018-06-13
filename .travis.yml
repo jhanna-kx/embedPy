@@ -4,18 +4,17 @@ os:
 - osx
 git:
   depth: 1
-addons:
-  apt:
-    packages:
-      python3-pip  
+
+before_install:
+- if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install python3-pip; else brew install python3-pip; fi
 script:
 - python3 --version
 - pip3 --version
 - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64;OD=$L64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64;OD=$M64; else echo "unknown OS ('$TRAVIS_OS_NAME')" >&2; exit 1; fi; export QLIBDIR
-- mkdir -p q/$QLIBDIR && export QHOME=$(pwd)/q && export PATH=$QHOME/$QLIBDIR:$PATH
-- curl -o q/$QLIBDIR.zip $OD
+- export QHOME=$(pwd)/q && export PATH=$QHOME/$QLIBDIR:$PATH
+- curl -o q/q.zip $OD
 - ls -R q
-- unzip -d q q/${QLIBDIR}.zip
+- unzip -d q q/q.zip
 - make p.so
 - echo "Preparing version $TRAVIS_BRANCH-$TRAVIS_COMMIT"
 - tar czf embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.tgz p.q p.k test.q tests [ml]64/p.so LICENSE README.md
