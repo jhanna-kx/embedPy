@@ -11,7 +11,7 @@ script:
 - python3 --version
 - pip3 --version
 - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64;OD=$L64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64;OD=$M64; else echo "unknown OS ('$TRAVIS_OS_NAME')" >&2; exit 1; fi; export QLIBDIR
-- export QHOME=$(pwd)/q && export PATH=$QHOME/$QLIBDIR:$PATH
+- mkdir q && export QHOME=$(pwd)/q && export PATH=$QHOME/$QLIBDIR:$PATH
 - curl -o q/q.zip $OD
 - ls -R q
 - unzip -d q q/q.zip
