@@ -6,7 +6,7 @@ git:
   depth: 1
 
 before_install:
-- if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install python3-pip; else brew install python3; fi
+- if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install python3-pip python3-dev; else brew upgrade python3; fi
 script:
 - python3 --version
 - pip3 --version
