@@ -14,7 +14,7 @@ script:
 - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64;OD=$L64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64;OD=$M64; else echo "unknown OS ('$TRAVIS_OS_NAME')" >&2; exit 1; fi; export QLIBDIR
 - mkdir -p q/$QLIBDIR && export QHOME=$(pwd)/q && export PATH=$QHOME/$QLIBDIR:$PATH
 - curl -o q/$QLIBDIR.zip $OD
-- ls q
+- ls -R q
 - unzip -d q q/${QLIBDIR}.zip
 - make p.so
 - echo "Preparing version $TRAVIS_BRANCH-$TRAVIS_COMMIT"
