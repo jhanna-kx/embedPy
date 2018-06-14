@@ -5,5 +5,5 @@ df2tab:{
   n:$[.p.isinstance[x`:index;.p.import[`pandas]`:RangeIndex]`;0;x[`:index.nlevels]`];
   n!flip $[n;x[`:reset_index][];x][`:to_dict;`list]`}
 k:1!`c3`c2`c1 xcols x:([]c1:1 2 3;c2:("one";"two";"three");c3:1.5 2.5 3.5)
-x~df2tab tab2df x
-k~df2tab tab2df k
+$[(a:x)~b:df2tab tab2df x);1b;[show a;show b;0b]]
+$[(a:k)~b:df2tab tab2df k;1b;[show a;show b;0b]]
