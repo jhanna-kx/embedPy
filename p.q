@@ -3,8 +3,6 @@ if[not .P.loaded:-1h=type@[`.p@;`numpy;`];
  sc:{"'",x,"'.join([__import__('sysconfig').get_config_var(v)for v in",ssr[.j.j y;"\"";"'"],"])"};pr:{"print(",x,");"};
  c:"-c \"",pr[$[.z.o like"w*";sc["/python";`BINDIR`VERSION],"+'.dll'";sc["/";`LIBDIR`INSTSONAME]]],pr[$[.z.o like"m*";sc["/";`PYTHONFRAMEWORKPREFIX`INSTSONAME];.z.o like"l*";sc["/";`LIBPL`LDLIBRARY];"''"]],pr["__import__('sys').prefix"],"\"2>",$[.z.o like"w*";"nul";"/dev/null"];
  `L`M`H set'@[system"python3 ",;c;{system"python ",c}];if[count M;if[k~key k:`$":",M;L::M]];
- system"c 23 238";
- show `L`M`H!(L;M;H);
  .p:(`:./p 2:(`init;2))[L;H]]
 loaded:.P.loaded
 if[not loaded;
