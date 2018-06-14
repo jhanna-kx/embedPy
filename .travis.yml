@@ -19,6 +19,7 @@ script:
 - tar czf embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.tgz p.q p.k test.q tests [ml]64/p.so LICENSE README.md
 - echo "Packaged as embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.zip"
 - cp [ml]64/p.so q/$QLIBDIR
+- pip install -r tests/requierments.txt
 - q test.q -q
 compiler:
 - clang
