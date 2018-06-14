@@ -8,7 +8,7 @@ git:
 before_install:
 - if [ $TRAVIS_OS_NAME = osx ]; then brew outdated pyenv || brew upgrade pyenv ; fi
 - PY=$(pyenv install --list | grep -v - |grep -v [a-z]|grep -e  '^  3\.5\..*'|tail -1)
-- pyenv install $PY && pyenv local $PY
+- pyenv install $PY && pyenv local $PY && python --version && python3 --version
 script:
 #- pyenv local $PY
 - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64;OD=$L64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64;OD=$M64; else echo "unknown OS ('$TRAVIS_OS_NAME')" >&2; exit 1; fi; export QLIBDIR
@@ -21,7 +21,7 @@ script:
 - tar czf embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.tgz p.q p.k test.q tests [ml]64/p.so LICENSE README.md
 - echo "Packaged as embedPy_$TRAVIS_OS_NAME-$TRAVIS_BRANCH.zip"
 - cp [ml]64/p.so q/$QLIBDIR
-- pip3 install -r tests/requirements.txt
+- pip3 -q install -r tests/requirements.txt
 - q test.q -q
 compiler:
 - clang
