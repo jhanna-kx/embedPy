@@ -6,7 +6,7 @@ git:
   depth: 1
 
 before_install:
-- if [ $TRAVIS_OS_NAME = linux ]; then pyenv install 3.5.4 ; else brew upgrade python3; fi
+- if [ $TRAVIS_OS_NAME = linux ]; then pyenv install 3.5.4 ; else brew outdated python3 || brew upgrade python3; fi
 script:
 - if [ $TRAVIS_OS_NAME = linux ]; then pyenv local 3.5.4 ; fi
 - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64;OD=$L64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64;OD=$M64; else echo "unknown OS ('$TRAVIS_OS_NAME')" >&2; exit 1; fi; export QLIBDIR
