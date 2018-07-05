@@ -1,0 +1,23 @@
+package:
+  name: embedpy
+  version: {{ environ.get('EMBEDPY_VERSION', 'noversion') }}
+
+source:
+  path: ..
+
+build:
+  detect_binary_files_with_prefix: False
+  script_env:
+    - QLIBDIR
+
+requirements:
+  host:
+    - python
+    - kdb
+  run:
+    - python
+    - kdb
+
+about:
+  home: https://github.com/KxSystems/embedPy
+  summary: allows the kdb+ interpreter to manipulate Python objects
