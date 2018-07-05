@@ -11,6 +11,9 @@ build:
     - QLIBDIR
 
 requirements:
+  build:
+    - m2w64-make                     [win]
+    - {{ compiler('c') }}
   host:
     - python
     - kdb
