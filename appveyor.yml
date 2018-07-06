@@ -22,7 +22,7 @@ build_script:
 
     set PATH=C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts;%PATH%
 
-    conda install conda-build
+    conda install -y conda-build
 
     conda build conda-recipe
 after_build:
