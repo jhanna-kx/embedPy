@@ -30,6 +30,10 @@ build_script:
 
     echo %CONDAPACKAGE%
     
+    dir  
+
+    dir win-64
+
     dir %CONDAPACKAGE%
 
 after_build:
