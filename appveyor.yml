@@ -31,6 +31,8 @@ build_script:
     echo %CONDAPACKAGE%
     
     dir  
+   
+    dir conda-recipe
 
     dir win-64
 
