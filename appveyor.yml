@@ -19,6 +19,12 @@ build_script:
     cl /LD /DKXVER=3 /Fep.dll /O2 py.c q.lib
 
     move p.dll w64 
+
+    set PATH=C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts;%PATH%
+
+    conda install conda-build
+
+    conda build conda-recipe
 after_build:
 - cmd: >-
 
