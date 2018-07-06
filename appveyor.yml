@@ -36,6 +36,8 @@ after_build:
     if "%APPVEYOR_REPO_TAG%"=="true" ( 7z a embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md && appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip )
 
     if "%APPVEYOR_REPO_TAG%"=="false" ( 7z a embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md && appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip )
+
+    appveyor PushArtifact %CONDAPACKAGE%
 deploy:
  release: $(appveyor_repo_tag_name)
  provider: GitHub
