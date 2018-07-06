@@ -30,7 +30,7 @@ build_script:
 
     echo %CONDAPACKAGE%
     
-    appveyor PushArtifact %CONDAPACKAGE%
+    dir %CONDAPACKAGE%
 
 after_build:
 - cmd: >-
