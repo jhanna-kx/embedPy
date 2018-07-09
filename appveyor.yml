@@ -26,6 +26,8 @@ build_script:
 
     conda build -c jhanna-kx --output-folder . conda-recipe > packagename.txt
 
+    set QLIBDIR=w64 
+ 
     set /P CONDAPACKAGE=<packagename.txt
 
     echo %CONDAPACKAGE%
