@@ -1,3 +1,4 @@
+@echo on
 move p.q p.k %QHOME%
 if errorlevel 1 exit 1
 
