@@ -24,11 +24,11 @@ build_script:
 
     conda install -y conda-build
 
-    conda build -c jhanna-kx --output-folder . --debug conda-recipe > packagename.txt
+    conda build -c jhanna-kx --output-folder . --output conda-recipe > packagename.txt
 
-    #set /P CONDAPACKAGE=<packagename.txt
+    set /P CONDAPACKAGE=<packagename.txt
 
-    #echo %CONDAPACKAGE%
+    echo %CONDAPACKAGE%
     
     dir  
    
@@ -36,7 +36,7 @@ build_script:
 
     dir win-64
 
-    #dir %CONDAPACKAGE%
+    dir %CONDAPACKAGE%
 
 after_build:
 - cmd: >-
