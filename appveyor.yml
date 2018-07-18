@@ -30,7 +30,9 @@ build_script:
 
     echo %CONDAPACKAGE%
     
-    dir %CONDAPACKAGE%
+    dir C:\Miniconda3-x64\conda-bld
+
+    dir C:\Miniconda3-x64\conda-bld\win-64
    
 after_build:
 - cmd: >-
