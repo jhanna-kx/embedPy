@@ -34,10 +34,6 @@ build_script:
    
     dir conda-recipe
 
-    dir win-64
-
-    dir %CONDAPACKAGE%
-
 after_build:
 - cmd: >-
 
