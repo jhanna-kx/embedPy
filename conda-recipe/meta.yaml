@@ -7,8 +7,6 @@ source:
 
 build:
   detect_binary_files_with_prefix: False
-  script_env:
-    - QLIBDIR
 
 requirements:
   build:
@@ -20,6 +18,17 @@ requirements:
   run:
     - python
     - kdb
+test:
+  source_files:
+    - test.q
+    - tests/
+  requires:
+    - matplotlib
+    - numpy
+    - scipy
+    - tensorflow
+    - pandas
+    - beautifulsoup4
 
 about:
   home: https://github.com/KxSystems/embedPy

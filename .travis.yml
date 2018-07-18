@@ -79,7 +79,7 @@ jobs:
         - make p.so 
         - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64; fi; export QLIBDIR
         - export EMBEDPY_VERSION=$TRAVIS_BRANCH
-	- CONDABUILD="conda build -c kx conda-recipe"
+	- CONDABUILD="conda build -c kx --no-long-test-prefix conda-recipe"
 	- CONDAPACKAGE=$($CONDABUILD --output)
         - $CONDABUILD
         - ls $CONDAPACKAGE

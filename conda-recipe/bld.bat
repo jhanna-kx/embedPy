@@ -9,5 +9,5 @@ cl /LD /DKXVER=3 /Fep.dll /02 py.c q.lib || goto :error
 move p.dll %QBIN% || goto :error
 exit 0
 :error
-exit /b %errorlevel%
+exit %errorlevel%
 
