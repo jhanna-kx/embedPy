@@ -25,6 +25,7 @@ build_script:
     conda install -y conda-build
 
     conda build -c jhanna-kx --output conda-recipe > packagename.txt
+
     conda build -c jhanna-kx conda-recipe
 
     set /P CONDAPACKAGE=<packagename.txt
