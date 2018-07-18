@@ -24,16 +24,15 @@ build_script:
 
     conda install -y conda-build
 
-    conda build conda-recipe -c jhanna-kx --output > packagename.txt
-    conda build conda-recipe -c jhanna-kx
+    conda build -c jhanna-kx --output conda-recipe > packagename.txt
+    conda build -c jhanna-kx conda-recipe
 
     set /P CONDAPACKAGE=<packagename.txt
 
     echo %CONDAPACKAGE%
     
-    dir C:\Miniconda3-x64\conda-bld
+    dir %CONDAPACKGE%
 
-    dir C:\Miniconda3-x64\conda-bld\win-64
    
 after_build:
 - cmd: >-
