@@ -4,7 +4,9 @@ if not defined QLIC_KC (
 echo|set /P =%QLIC_KC% >kc.lic.enc
 certutil -decode kc.lic.enc kc.lic
 set QLIC=%CD%
-q test.q || goto :error
+echo 0N!`qruns | q
+q test.q -q 
+echo done
 exit /b 0
 
 :error
