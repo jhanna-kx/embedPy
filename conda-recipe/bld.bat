@@ -1,5 +1,12 @@
-move p.q, p.k %QHOME% || goto :error
-move w64/p.so %QHOME%/w64 || goto :error
+set QHOME=%PREFIX%\q
+mkdir %QHOME%
+move p.q %QHOME% || goto :error
+move p.k %QHOME% || goto :error
+
+set QBIN=%QHOME%\w64
+mkdir QBIN
+cl /LD /DKXVER=3 /Fep.dll /02 py.c q.lib || goto :error
+move p.dll %QBIN% || goto :error
 exit 0
 :error
 exit /b %errorlevel%
