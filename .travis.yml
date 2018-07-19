@@ -78,6 +78,10 @@ jobs:
       script:
         - make p.so 
         - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64; fi; export QLIBDIR
+        - if [[ "x$QLIC_KC" != "x" ]]; then
+            echo -n $QLIC_KC |base64 --decode > q/kc.lic;
+            export QLIC=$(pwd)/q 
+          fi
         - export EMBEDPY_VERSION=$TRAVIS_BRANCH
         - CONDAPACKAGE=$(conda build conda-recipe --output -c kx)
         - conda build -c kx conda-recipe --no-long-test-prefix
