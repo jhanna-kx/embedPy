@@ -1,6 +1,4 @@
-if [[ "x$QLIC_KC" != "x" ]]; then
-  echo -n $QLIC_KC |base64 --decode > kc.lic;
-  export QLIC=$(pwd);
+if [[ "x$QLIC" != "x" ]]; then
   q test.q -q;
 else
   echo No kdb+, no tests;
