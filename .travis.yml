@@ -80,7 +80,7 @@ jobs:
         - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64; fi; export QLIBDIR
         - export EMBEDPY_VERSION=$TRAVIS_BRANCH
         - CONDAPACKAGE=$(conda build conda-recipe --output -c kx)
-        - conda build -c kx conda-recipe
+        - conda build -c kx conda-recipe --no-long-test-prefix
         - echo $CONDAPACKAGE
 notifications:
   slack:
