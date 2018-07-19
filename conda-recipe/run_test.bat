@@ -5,7 +5,7 @@ echo|set /P =%QLIC_KC% >kc.lic.enc
 certutil -decode kc.lic.enc kc.lic
 set QLIC=%CD%
 echo 0N!`qruns | q
-echo system"; test.q" | q -debug -q
+echo system"l test.q" | q -debug -q
 echo done
 exit /b 0
 
