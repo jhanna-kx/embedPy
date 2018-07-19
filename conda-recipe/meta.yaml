@@ -15,10 +15,10 @@ requirements:
     - m2w64-make                     [win]
     - {{ compiler('c') }}
   host:
-    - python
+    - python >=3.5,<3.7
     - kdb
   run:
-    - python
+    - python >=3.5,<3.7
     - kdb
 test:
   source_files:
