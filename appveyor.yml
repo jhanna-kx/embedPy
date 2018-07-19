@@ -24,6 +24,8 @@ build_script:
 
     conda install -y conda-build
 
+    if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD% )
+
     conda build -c jhanna-kx --output conda-recipe > packagename.txt
 
     conda build -c jhanna-kx conda-recipe
