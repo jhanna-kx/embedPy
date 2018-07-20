@@ -12,7 +12,7 @@ build_script:
 
     curl -fsSL -o q.lib https://github.com/KxSystems/kdb/raw/master/w64/q.lib
 
-    dir C:\Program Files\Microsoft SDKs\
+    dir C:\Program Files\
     
     dir C:\Program Files\Microsoft SDKs\Windows
    
