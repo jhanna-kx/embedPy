@@ -62,10 +62,13 @@ jobs:
     - stage: conda
       os:
         - osx
-        - linux
       before_install: skip
       install:
-        - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+       - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+         else
+          wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+         fi
         - bash miniconda.sh -b -p $HOME/miniconda
         - export PATH="$HOME/miniconda/bin:$PATH"
         - hash -r
@@ -82,6 +85,9 @@ jobs:
         - CONDAPACKAGE=$(conda build conda-recipe --output -c kx)
         - conda build -c kx conda-recipe --no-long-test-prefix
         - echo $CONDAPACKAGE
+     - stage: conda
+       os:
+        - linux
 notifications:
   slack:
     secure: "MR5icOywJJSFy7gnxeNXACN2nKiHniVgX1myiF+H9U4wsW6+2BHzPMcmy3FIUjL3Tb+PcAfq7+8RHerAx/XEB7nsVJsu9TyCjYWgaqx5Z9WNIDcjQh4wnFurhlzqrwF4gjelY+wxdffpsKUVaP+fermWbqHvv1aPPk4l3xEonXZ5J5uNkPTPufILzpx2cTxWg08o6PhvgjTrombs+9rGxahU8cfUSwTVuPCcPtOy70kcaowFfrU2kWzQk88NM5d/TVZdkOmGhLqVWSvRgaLXFkGYwRWatT7divlXX2evYwdYib++RUUhxDGZwJjdFCbGDNjrMyBbJOrCkndxLSATd6gN76dWuWsVV49K4YB0Mw5uFJFt6J0TnbkJC5Zsl9i6vik7m3anuIPOeAI54/wtlCvMeIpt2eQCPMy7xXu2hXNUR4ofM4yaVjKz69b5JIZ1o3vBxPQxAqIYggqPsTaLJM4vLpZlncnViBkfO/La5V9sJNQy3IyLSlEKry3giYfo8wbHT3PLn1xG7HW2DJ7hRn19yzTkCCNfaSzvq8YlSQvjNlPCO566ykYYG6SzG/NnbDqJAqydhpFuNC7ZB5dPuAOoDANCGs4gtfYKia+ZVxKYn25Y52vdi34L5TO83BUrsQWgytb0J6a4jDe3PWLVFSP7XLiy4h8Tyv76+Hm4lHk="
