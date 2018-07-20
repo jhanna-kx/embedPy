@@ -22,7 +22,7 @@ build_script:
 
     set PATH=C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts;%PATH%
  
-    call "C:\Program Files (x86)\Microsoft SDKs\Windows\V7.1A\Bin\SetEnv.cmd" /x64
+    dir "C:\Program Files (x86)\Microsoft SDKs\Windows\V7.1A\Bin\"
 
     call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
 
