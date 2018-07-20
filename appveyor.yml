@@ -12,9 +12,9 @@ build_script:
 
     curl -fsSL -o q.lib https://github.com/KxSystems/kdb/raw/master/w64/q.lib
 
-    dir "C:\Program Files (x86)\Microsoft SDKs\Windows"
+    dir "C:\Program Files (x86)\Microsoft SDKs\Windows\V7.1A"
 
-    dir "C:\Program Files\Microsoft SDKs\Windows"
+    dir "C:\Program Files\Microsoft SDKs\"
     
     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
