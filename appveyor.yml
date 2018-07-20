@@ -26,11 +26,11 @@ build_script:
 
     set JJJ=%CD%
 
-    cd "C:\Program Files\"
+    cd "C:\Program Files (x86)\"
 
     dir /s SetEnv.cmd 
 
-    cd %JJJ
+    cd %JJJ%
 
     call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
 
