@@ -26,7 +26,7 @@ build_script:
 
     set JJJ=%CD%
 
-    cd C:\
+    cd "C:\Program Files\"
 
     dir /s SetEnv.cmd 
 
