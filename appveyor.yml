@@ -46,7 +46,7 @@ build_script:
 
     activate conda_test
 
-    conda install -c kx/label/dev --use-local embedpy
+    conda install -y -c kx/label/dev --use-local embedpy
 
     q test.q
 
