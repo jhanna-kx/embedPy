@@ -38,8 +38,6 @@ build_script:
 
     set /P CONDAPACKAGE=<packagename.txt
 
-    where appveyor
-
     conda build --no-test -c kx/label/dev conda-recipe
 
     conda create -y -n conda_test -c kx/label/dev kdb
@@ -49,8 +47,6 @@ build_script:
     call conda-recipe\test.bat
 
     deactivate 
-
-    where appveyor
 
     set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
 
