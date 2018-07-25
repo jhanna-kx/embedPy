@@ -23,22 +23,29 @@ build_script:
     move p.dll w64 
 
     set PATH=C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts;%PATH%
+ 
+    dir "C:\Program Files (x86)\Microsoft SDKs\Windows\V7.1A\Bin\"
+
+    set JJJ=%CD%
+
+    cd "C:\Program Files (x86)\"
+
+    dir /s SetEnv.cmd 
+
+    cd %JJJ%
+
+    call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
 
     conda install -y conda-build
 
     if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD%)
 
-    conda build -c jhanna-kx --output conda-recipe > packagename.txt
+    conda build -c kx/label/dev --output conda-recipe > packagename.txt
 
-    conda build -c jhanna-kx conda-recipe
+    conda build -c kx/label/dev conda-recipe
 
     set /P CONDAPACKAGE=<packagename.txt
 
-    echo %CONDAPACKAGE%
-    
-    dir %CONDAPACKAGE%
-
-   
 after_build:
 - cmd: >-
 

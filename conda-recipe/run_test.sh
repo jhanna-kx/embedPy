@@ -1,6 +1,6 @@
 #!/bin/bash
-if [[ "x$QLIC" != "x" ]]; then
-  echo QHOME is $QHOME
+if [ -e ${QLIC}/kc.lic ] 
+then
   q test.q -q;
 else
   echo No kdb+, no tests;

@@ -1,9 +1,12 @@
 \d .p
 if[not .P.loaded:-1h=type@[`.p@;`numpy;`];
  sc:{"'",x,"'.join([__import__('sysconfig').get_config_var(v)for v in",ssr[.j.j y;"\"";"'"],"])"};pr:{"print(",x,");"};
- c:"-c \"",pr[$[.z.o like"w*";sc["/python";`BINDIR`VERSION],"+'.dll'";sc["/";`LIBDIR`INSTSONAME]]],pr[$[.z.o like"m*";sc["/";`PYTHONFRAMEWORKPREFIX`INSTSONAME];.z.o like"l*";sc["/";`LIBPL`LDLIBRARY];"''"]],pr["__import__('sys').prefix"],"\"",$[.z.o like"w*";"<nul 2>nul";"2>/dev/null"];
+ c:"-c \"",pr[$[.z.o like"w*";sc["/python";`BINDIR`VERSION],"+'.dll'";sc["/";`LIBDIR`INSTSONAME]]],pr[$[.z.o like"m*";sc["/";`PYTHONFRAMEWORKPREFIX`INSTSONAME];.z.o like"l*";sc["/";`LIBPL`LDLIBRARY];"''"]],pr["__import__('sys').prefix"],"\"2>",$[.z.o like"w*";"nul <nul";"/dev/null"];
  `L`M`H set'@[system"python3 ",;c;{system"python ",c}];if[count M;if[k~key k:`$":",M;L::M]];
+ show `L`M`H!(L;M;H);
+ -1"loading embedpy";
  .p:(`:./p 2:(`init;2))[L;H]]
+-1"loaded p.dll|so";
 loaded:.P.loaded
 if[not loaded;
  ei:{eo y _ x;n set .p.get[n:`$(2+x)_(y?"(")#y]value y x;};
