@@ -28,7 +28,6 @@ build_script:
 
     call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
 
-    # Don't use latest version of conda build, the defaulting of conda-verify option breaks the output option
     conda install -y "conda-build<3.12"
     
     if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD%)
@@ -39,7 +38,6 @@ build_script:
 
     echo CONDAPACKAGE --- %CONDAPACKAGE%
 
-    #test separately as tests do not run correctly as part of conda build
     conda build --no-test -c kx/label/dev conda-recipe
 
     conda create -y -n conda_test -c kx/label/dev kdb
