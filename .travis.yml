@@ -74,7 +74,7 @@ jobs:
         - hash -r
         - conda config --set always_yes yes --set changeps1 no
         - conda update -q conda
-        - conda install -q conda-build
+        - conda install -q conda-build<3.12
       script:
         - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64; fi; export QLIBDIR
         - if [[ "x$QLIC_KC" != "x" ]]; then
@@ -83,7 +83,7 @@ jobs:
           fi
         - export EMBEDPY_VERSION=$TRAVIS_BRANCH
         - CONDAPACKAGE=$(conda build conda-recipe --output -c kx)
-        - conda build --verify -c kx conda-recipe --no-long-test-prefix
+        - conda build -c kx conda-recipe --no-long-test-prefix
         - echo $CONDAPACKAGE
     - stage: conda
       os:
