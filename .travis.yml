@@ -86,7 +86,6 @@ jobs:
         - export EMBEDPY_VERSION=$TRAVIS_BRANCH
         - CONDAPACKAGE=$(conda build conda-recipe --output -c kx)
         - conda build -c kx conda-recipe --no-long-test-prefix
-        - if [ -n "$TRAVIS_TAG" ]; then anaconda -t %CONDATOKEN% upload -l dev $CONDAPACKAGE; fi
       deploy:
         provider: script
         script: anaconda -t $CONDATOKEN upload -l dev $CONDAPACKGE
