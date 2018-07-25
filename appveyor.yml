@@ -38,7 +38,7 @@ build_script:
 
     conda build --no-test -c kx/label/dev conda-recipe
 
-    conda-recipe\test.bat
+    call conda-recipe\test.bat
 
 after_build:
 - cmd: >-
