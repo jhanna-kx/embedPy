@@ -83,7 +83,7 @@ jobs:
           fi
         - export EMBEDPY_VERSION=$TRAVIS_BRANCH
         - CONDAPACKAGE=$(conda build conda-recipe --output -c kx)
-        - conda build -c kx conda-recipe --no-long-test-prefix
+        - conda build --verify -c kx conda-recipe --no-long-test-prefix
         - echo $CONDAPACKAGE
     - stage: conda
       os:
