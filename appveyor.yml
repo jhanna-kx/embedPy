@@ -28,8 +28,6 @@ build_script:
 
     call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
 
-    conda update conda -y --no-update-dependencies
-
     conda install -y conda-build
 
     if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD%)
