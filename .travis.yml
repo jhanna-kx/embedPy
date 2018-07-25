@@ -59,34 +59,24 @@ jobs:
         on:
           tags: true
           condition: $TRAVIS_BRANCH =~ ^[0-9]+\.
-    - stage: conda
+    - &conda_build
+      stage: conda
+      before_install: skip
+      install: skip
+      script:
+        - conda-recipe/travisbuild.sh
+      deploy:
+        provider: script
+        script:
+          - anaconda -t $CONDATOKEN upload -l dev $CONDAPACKAGE
+        on:
+          tags: true
+          condition: $TRAVIS_BRANCH =~ ^[0-9]+\.
+    - <<: *conda_build
       os:
        - osx
-      before_install: skip
-      install: skip
-      script:
-        - conda-recipe/travisbuild.sh
-      deploy:
-        provider: script
-        script:
-          - anaconda -t $CONDATOKEN upload -l dev $CONDAPACKAGE
-        on:
-          tags: true
-          condition: $TRAVIS_BRANCH =~ ^[0-9]+\.
-    - stage: conda
-      os:
+    - <<: *conda_build
        - linux
-      before_install: skip
-      install: skip
-      script:
-        - conda-recipe/travisbuild.sh
-      deploy:
-        provider: script
-        script:
-          - anaconda -t $CONDATOKEN upload -l dev $CONDAPACKAGE
-        on:
-          tags: true
-          condition: $TRAVIS_BRANCH =~ ^[0-9]+\.
 
 notifications:
   slack:
