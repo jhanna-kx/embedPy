@@ -17,6 +17,7 @@ exit /b 0
 
 :error
 echo error
+echo ERROR
 exit /b %errorLevel%
 
 :nokdb
