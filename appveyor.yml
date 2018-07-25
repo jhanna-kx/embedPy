@@ -32,7 +32,7 @@ build_script:
 
     if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD%)
 
-    conda build -c kx/label/dev --output conda-recipe > packagename.txt
+    conda build --output conda-recipe > packagename.txt
 
     set /P CONDAPACKAGE=<packagename.txt
 
