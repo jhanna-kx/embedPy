@@ -14,6 +14,8 @@ build_script:
 
     curl -fsSL -o q.lib https://github.com/KxSystems/kdb/raw/master/w64/q.lib
 
+    set OP=%PATH%
+
     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
     mkdir w64 
@@ -21,6 +23,8 @@ build_script:
     cl /LD /DKXVER=3 /Fep.dll /O2 py.c q.lib
 
     move p.dll w64 
+
+    set PATH=%OP% 
 
     set PATH=C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts;%PATH%
 
