@@ -6,6 +6,8 @@ activate conda_test || goto :error
 conda install -y --use-local embedpy || goto :error
 conda install --file tests\requirements.txt || goto :error
 q test.q || goto :error
+echo tests complete
+deactivate
 exit /b 0
 
 :error
