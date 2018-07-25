@@ -26,6 +26,8 @@ build_script:
 
     set PATH=C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts;%PATH%
 
+    set OP1=%PATH%
+
     call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
 
     conda install -y "conda-build<3.12"
@@ -36,13 +38,19 @@ build_script:
 
     set /P CONDAPACKAGE=<packagename.txt
 
+    conda build --no-test -c kx/label/dev conda-recipe
+
     conda create -y -n conda_test -c kx/label/dev kdb
 
     activate conda_test
 
-    conda build --no-test -c kx/label/dev conda-recipe
-
     call conda-recipe\test.bat
+
+    deactivate 
+
+    set PATH=%OP1%
+
+    
 
 after_build:
 - cmd: >-
