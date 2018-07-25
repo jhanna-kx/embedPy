@@ -62,6 +62,8 @@ jobs:
     - stage: conda
       os:
        - osx
+      os:
+       - linux
       before_install: skip
       install:
         - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
@@ -87,9 +89,6 @@ jobs:
         - conda build -c kx conda-recipe --no-long-test-prefix
         - echo $CONDAPACKAGE
         - if [ -n "$TRAVIS_TAG" ]; then anaconda -t %CONDATOKEN% upload -l dev $CONDAPACKAGE; fi
-    - stage: conda
-      os:
-       - linux
 
 notifications:
   slack:
