@@ -29,16 +29,16 @@ build_script:
     call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
 
     conda install -y conda-build
-
+    
     if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD%)
 
-    conda build --output conda-recipe > packagename.txt
+    conda build --verify --output conda-recipe > packagename.txt
 
     set /P CONDAPACKAGE=<packagename.txt
 
     echo CONDAPACKAGE --- %CONDAPACKAGE%
 
-    conda build --no-test -c kx/label/dev conda-recipe
+    conda build --verify --no-test -c kx/label/dev conda-recipe
 
     conda create -y -n conda_test
 
