@@ -62,6 +62,7 @@ jobs:
     - stage: conda
       os:
        - osx
+    - stage: conda
       os:
        - linux
       before_install: skip
