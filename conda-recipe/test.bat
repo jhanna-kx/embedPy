@@ -4,7 +4,7 @@ if not defined QLIC (
 echo install embedpy
 conda install -y --use-local embedpy || goto :error
 echo install requirements
-conda install --file tests\requirements.txt || goto :error
+conda install -y --file tests\requirements.txt || goto :error
 echo run tests
 q test.q || goto :error
 echo tests complete

@@ -36,9 +36,9 @@ build_script:
 
     set /P CONDAPACKAGE=<packagename.txt
 
-    conda create -y -n conda_test -c kx/label/dev kdb || goto :error
+    conda create -y -n conda_test -c kx/label/dev kdb
 
-    activate conda_test || goto :error
+    activate conda_test
 
     conda build --no-test -c kx/label/dev conda-recipe
 
