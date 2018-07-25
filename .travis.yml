@@ -74,7 +74,7 @@ jobs:
         - hash -r
         - conda config --set always_yes yes --set changeps1 no
         - conda update -q conda
-        - conda install -q conda-build<3.12
+        - conda install -q "conda-build<3.12"
       script:
         - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64; fi; export QLIBDIR
         - if [[ "x$QLIC_KC" != "x" ]]; then
