@@ -40,7 +40,7 @@ build_script:
 
     conda build --no-test -c kx/label/dev conda-recipe
 
-    conda create -y -n conda_test -c kx/label/dev kdb python=3.6
+    conda create -y -n conda_test -c kx/label/dev kdb
 
     activate conda_test
 
