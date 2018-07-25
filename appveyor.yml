@@ -40,11 +40,13 @@ build_script:
 
     set /P CONDAPACKAGE=<packagename.txt
 
+    echo %CONDAPACKAGE%
+
     conda create -y -n conda_test
 
     activate conda_test
 
-    conda install -c kx/label/dev %CONDAPACKAGE%
+    conda install -c kx/label/dev embedpy
 
     q test.q
 
