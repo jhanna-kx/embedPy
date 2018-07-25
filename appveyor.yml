@@ -36,17 +36,17 @@ build_script:
 
     conda build -c kx/label/dev --output conda-recipe > packagename.txt
 
-    conda build --no-test -c kx/label/dev conda-recipe
-
     set /P CONDAPACKAGE=<packagename.txt
 
-    echo %CONDAPACKAGE%
+    echo CONDAPACKAGE --- %CONDAPACKAGE%
+
+    conda build --no-test -c kx/label/dev conda-recipe
 
     conda create -y -n conda_test
 
     activate conda_test
 
-    conda install -c kx/label/dev embedpy
+    conda install -c kx/label/dev --use-local embedpy
 
     q test.q
 
@@ -57,7 +57,7 @@ after_build:
 
     if "%APPVEYOR_REPO_TAG%"=="false" ( 7z a embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md && appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip )
 
-    appveyor PushArtifact %CONDAPACKAGE%
+    if "%APPVEYOR_REPO_TAG%"=="true" ( anaconda -t %CONDATOKEN% upload -l dev %CONDAPACKAGE% )
 
 deploy:
  release: $(appveyor_repo_tag_name)
