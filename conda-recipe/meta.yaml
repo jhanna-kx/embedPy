@@ -24,13 +24,6 @@ test:
   source_files:
     - test.q
     - tests/
-  requires:
-    - matplotlib
-    - numpy
-    - scipy
-    - tensorflow
-    - pandas
-    - beautifulsoup4
 
 about:
   home: https://github.com/KxSystems/embedPy
