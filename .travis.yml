@@ -85,6 +85,7 @@ jobs:
         - CONDAPACKAGE=$(conda build conda-recipe --output -c kx)
         - conda build -c kx conda-recipe --no-long-test-prefix
         - echo $CONDAPACKAGE
+        - if [ -n "$TRAVIS_TAG" ]; then anaconda -t %CONDATOKEN% upload -l dev $CONDAPACKAGE; fi
     - stage: conda
       os:
        - linux
