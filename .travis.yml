@@ -101,6 +101,7 @@ jobs:
         - conda create -y -n embedpy_test -c kx kdb
         - source activate embedpy_test
         - conda install --use-local embedpy
+        - q test.q -q
         - conda-recipe/run_test.sh
 
 notifications:
