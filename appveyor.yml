@@ -48,7 +48,7 @@ build_script:
 
     deactivate 
 
-    for /F "tokens=*" %P in ('packagename.txt') do echo %P
+    for /F "tokens=*" %%P in (packagename.txt) do echo %%P
 
     set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
 
