@@ -97,7 +97,7 @@ jobs:
         - if [[ "x$QLIC_KC" != "x" ]]; then mkdir -p q; echo -n $QLIC_KC |base64 --decode > q/kc.lic; export QLIC=$(pwd)/q; fi
         - export EMBEDPY_VERSION=$TRAVIS_BRANCH
         - export CONDAPACKAGE=$(conda build conda-recipe --output -c kx)
-        - conda build -c kx conda-recipe --test
+        - conda build -c kx conda-recipe --no-test
         - conda create -y -n embedpy_test -c kx kdb
         - source activate embedpy_test
         - conda install --use-local embedpy
