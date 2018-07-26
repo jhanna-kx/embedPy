@@ -48,6 +48,8 @@ build_script:
 
     deactivate 
 
+    echo %CONDAPACKAGE%
+
     set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
 
 after_build:
@@ -57,7 +59,7 @@ after_build:
 
     if "%APPVEYOR_REPO_TAG%"=="false" ( 7z a embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md && appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip )
 
-    if "%APPVEYOR_REPO_TAG%"=="true" ( anaconda -t %CONDATOKEN% upload -l dev %CONDAPACKAGE% )
+    if "%APPVEYOR_REPO_TAG%"=="true" ( conda install -y -q anaconda-client && anaconda -t %CONDATOKEN% upload -l dev %CONDAPACKAGE% )
 
 deploy:
  release: $(appveyor_repo_tag_name)

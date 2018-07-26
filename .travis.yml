@@ -84,7 +84,7 @@ jobs:
         - conda build -c kx conda-recipe --no-long-test-prefix
       deploy:
         provider: script
-        script: anaconda -t $CONDATOKEN upload -l dev $CONDAPACKAGE
+        script: conda install -q -y anaconda-client && for pack in $CONDAPACKAGE; do anaconda -t $CONDATOKEN upload -l dev $pack; done
         skip_cleanup: true
         on:
           tags: true
