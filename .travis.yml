@@ -66,10 +66,10 @@ jobs:
       before_install: skip
       install:
         - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-         else
-          wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
-         fi
+           wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+          else
+           wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+          fi
         - bash miniconda.sh -b -p $HOME/miniconda
         - export PATH="$HOME/miniconda/bin:$PATH"
         - hash -r
@@ -101,7 +101,7 @@ jobs:
         - conda create -y -n embedpy_test -c kx kdb
         - source activate embedpy_test
         - conda install --use-local embedpy
-        - q test.q -q
+        - conda-recipe/run_test.sh
 
 notifications:
   slack:
