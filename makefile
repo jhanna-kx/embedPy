@@ -3,7 +3,7 @@ ifeq ($(shell uname),Linux)
 LDFLAGS=-fPIC -shared
 QLIBDIR=l64
 else ifeq ($(shell uname),Darwin)
-LDFLAGS=-bundle -undefined dynamic_lookup
+LDFLAGS=-bundle -undefined dynamic_lookup -mmacosx-version-min=10.12
 QLIBDIR=m64
 endif
 p.so: $(QLIBDIR)/p.so
