@@ -1,3 +1,4 @@
+stage: standalone
 language: c
 os:
 - linux
@@ -43,7 +44,7 @@ deploy:
     tags: true
 jobs:
   include:
-    - stage: deploy
+    - stage: deploy_target
       env:
         - TARGET=docker
       sudo: required
@@ -62,7 +63,7 @@ jobs:
           tags: true
           condition: $TRAVIS_BRANCH =~ ^[0-9]+\. && $TRAVIS_REPOSLUG = KxSystems/embedPy
     - &conda_build
-      stage: deploy
+      stage: deploy_target
       env:
         - TARGET=conda
       os:
