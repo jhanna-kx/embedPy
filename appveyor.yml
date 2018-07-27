@@ -8,56 +8,12 @@ platform: x64
 build_script:
 - cmd: >-
 
-    curl -fsSL -o k.h https://github.com/KxSystems/kdb/raw/master/c/c/k.h 
-
-    curl -fsSL -o q.lib https://github.com/KxSystems/kdb/raw/master/w64/q.lib
-
-    set OP=%PATH%
-
-    call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-
-    mkdir w64 
-
-    cl /LD /DKXVER=3 /Fep.dll /O2 py.c q.lib
-
-    move p.dll w64 
-
-    set PATH=%OP% 
-
-    set PATH=C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts;%PATH%
-
-    call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
-
-    conda install -y "conda-build<3.12"
-
-    conda install -y anaconda-client
-    
-    if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD%)
-
-    if "%APPVEYOR_REPO_TAG%"=="true" ( set EMBEDPY_VERSION=%APPVEYOR_REPO_TAG_NAME% ) 
-
-    conda build --output conda-recipe > packagename.txt
-
-    conda build --no-test -c kx/label/dev conda-recipe
-
-    conda create -y -n conda_test -c kx/label/dev kdb
-
-    activate conda_test
-
-    call conda-recipe\test.bat
-
-    deactivate
-
-    set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
+    call build\appveyor_build.bat
 
 after_build:
 - cmd: >-
 
-    if "%APPVEYOR_REPO_TAG%"=="true" ( 7z a embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md && appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip )
-
-    if "%APPVEYOR_REPO_TAG%"=="false" ( 7z a embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md && appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip )
-
-    if "%APPVEYOR_REPO_TAG%"=="true" ( for /F "tokens=*" %%P in (packagename.txt) do anaconda -t %CONDATOKEN% upload -l dev %%P )
+    call build\appveyor_deploy.bat
 
 deploy:
  release: $(appveyor_repo_tag_name)
