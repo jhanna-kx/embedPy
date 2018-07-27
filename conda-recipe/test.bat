@@ -8,7 +8,6 @@ conda install -y --file tests\requirements.txt || goto :error
 echo run tests
 q test.q || goto :error
 echo tests complete
-deactivate
 exit /b 0
 
 :error
