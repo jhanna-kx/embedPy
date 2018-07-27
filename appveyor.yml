@@ -3,8 +3,6 @@ image:
 - Visual Studio 2017
 artifacts:
 - path: embedPy_windows-$(appveyor_repo_tag_name).zip
-init:
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 skip_non_tags: false
 platform: x64
 build_script:
@@ -60,9 +58,6 @@ after_build:
     if "%APPVEYOR_REPO_TAG%"=="false" ( 7z a embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md && appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip )
 
     if "%APPVEYOR_REPO_TAG%"=="true" ( for /F "tokens=*" %%P in (packagename.txt) do anaconda -t %CONDATOKEN% upload -l dev %%P )
-
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 deploy:
  release: $(appveyor_repo_tag_name)
