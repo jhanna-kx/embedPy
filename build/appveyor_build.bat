@@ -24,8 +24,14 @@ conda build --no-test -c kx/label/dev conda-recipe                        || got
 conda create -y -n conda_test -c kx/label/dev kdb                         || goto :error
 activate conda_test                                                       || goto :error
 call conda-recipe\test.bat                                                || goto :error
+echo %PATH%
 deactivate
+echo AFTER DEACTIVATE
+echo %PATH%
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
+
+echo NOW
+echo %PATH%
 exit /b 0
 
 :error
