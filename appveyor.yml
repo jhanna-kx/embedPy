@@ -36,6 +36,8 @@ build_script:
     
     if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.lic.enc kc.lic & set QLIC=%CD%)
 
+    if "%APPVEYOR_REPO_TAG%"=="true" ( set EMBEDPY_VERSION=%APPVEYOR_REPO_TAG_NAME% ) 
+
     conda build --output conda-recipe > packagename.txt
 
     conda build --no-test -c kx/label/dev conda-recipe
@@ -46,9 +48,7 @@ build_script:
 
     call conda-recipe\test.bat
 
-    deactivate 
-
-    for /F "tokens=*" %%P in (packagename.txt) do echo %%P
+    deactivate
 
     set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
 
@@ -58,10 +58,6 @@ after_build:
     if "%APPVEYOR_REPO_TAG%"=="true" ( 7z a embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md && appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_TAG_NAME%.zip )
 
     if "%APPVEYOR_REPO_TAG%"=="false" ( 7z a embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md && appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip )
-
-    where anaconda
-
-    anaconda -h
 
     if "%APPVEYOR_REPO_TAG%"=="true" ( for /F "tokens=*" %%P in (packagename.txt) do anaconda -t %CONDATOKEN% upload -l dev %%P )
 
