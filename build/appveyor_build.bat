@@ -22,10 +22,10 @@ conda build --output conda-recipe > packagenames.txt                      || got
 ::  test separately as tests under conda build have issue loading embedpy
 conda build --no-test -c kx/label/dev conda-recipe                        || goto :error
 conda create -y -n conda_test -c kx/label/dev kdb                         || goto :error
-activate conda_test                                                       || goto :error
+call activate conda_test                                                  || goto :error
 call conda-recipe\test.bat                                                || goto :error
 echo %PATH%
-deactivate
+call deactivate
 echo AFTER DEACTIVATE
 echo %PATH%
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
