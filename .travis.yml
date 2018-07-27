@@ -79,7 +79,6 @@ jobs:
         - export PATH="$HOME/miniconda/bin:$PATH"
         - hash -r
         - conda config --set always_yes yes --set changeps1 no
-        - conda update -q conda
         - conda install -q "conda-build<3.12"
       script:
         - if [ $TRAVIS_OS_NAME = linux ]; then QLIBDIR=l64; elif [ $TRAVIS_OS_NAME = osx ]; then QLIBDIR=m64; fi; export QLIBDIR
@@ -89,7 +88,8 @@ jobs:
         - conda build -c kx conda-recipe --no-long-test-prefix
       deploy:
         provider: script
-        script: conda install -q -y anaconda-client && for pack in $(cat packagenames.txt); do anaconda -t $CONDATOKEN upload -l dev $pack; done
+        script:
+          - conda install -q -y anaconda-client && for pack in $(cat packagenames.txt); do anaconda -t $CONDATOKEN upload -l dev $pack; done
         skip_cleanup: true
         on:
           tags: true
