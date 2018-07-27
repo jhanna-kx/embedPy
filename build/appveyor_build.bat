@@ -20,8 +20,8 @@ if defined QLIC_KC ( echo|set /P=%QLIC_KC% > kc.lic.enc & certutil -decode kc.li
 if "%APPVEYOR_REPO_TAG%"=="true" ( set EMBEDPY_VERSION=%APPVEYOR_REPO_TAG_NAME% ) 
 conda build --output conda-recipe > packagenames.txt                      || goto :error
 ::  test separately as tests under conda build have issue loading embedpy
-conda build --no-test -c kx/label/dev conda-recipe                        || goto :error
-conda create -y -n conda_test -c kx/label/dev kdb                         || goto :error
+conda build --no-test -c kx conda-recipe                                  || goto :error
+conda create -y -n conda_test -c kx kdb                                   || goto :error
 call activate conda_test                                                  || goto :error
 call build\conda_test.bat                                                 || goto :error
 call deactivate
