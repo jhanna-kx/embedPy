@@ -26,7 +26,7 @@ activate conda_test                                                       || got
 call conda-recipe\test.bat                                                || goto :error
 deactivate
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
-exit 0
+exit /b 0
 
 :error
 exit /b %errorLevel%

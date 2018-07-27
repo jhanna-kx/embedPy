@@ -5,6 +5,7 @@ if "%APPVEYOR_REPO_TAG%"=="true" (
  set ZIPNAME=embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip
 )
 7z a %ZIPNAME% p.q p.k test.q tests w64/p.dll LICENSE README.md || goto :error
+echo %PATH%
 appveyor PushArtifact embedPy_windows-%ZIPNAME%.zip  || goto :error
 if "%APPVEYOR_REPO_TAG%"=="true" (
  for /F "tokens=*" %%P in (packagenames.txt) do anaconda -t %CONDATOKEN% upload -l dev %%P || goto :error
