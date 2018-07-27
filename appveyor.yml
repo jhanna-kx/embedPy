@@ -57,7 +57,9 @@ after_build:
 
     if "%APPVEYOR_REPO_TAG%"=="false" ( 7z a embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip p.q p.k test.q tests w64/p.dll LICENSE README.md && appveyor PushArtifact embedPy_windows-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_VERSION%.zip )
 
-    conda install -y -q anaconda-client
+    conda install -y -c anaconda anaconda-client
+
+    where anaconda
 
     anaconda -h
 
