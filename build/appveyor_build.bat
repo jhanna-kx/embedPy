@@ -23,7 +23,7 @@ conda build --output conda-recipe > packagenames.txt                      || got
 conda build --no-test -c kx/label/dev conda-recipe                        || goto :error
 conda create -y -n conda_test -c kx/label/dev kdb                         || goto :error
 call activate conda_test                                                  || goto :error
-call build\test.bat                                                       || goto :error
+call build\conda_test.bat                                                 || goto :error
 call deactivate
 set PATH=%OP%;C:\Miniconda3-x64;C:\Miniconda3-x64\Scripts
 exit /b 0
