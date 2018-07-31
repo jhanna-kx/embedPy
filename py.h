@@ -115,3 +115,13 @@ ZI pyn(V**v){
 #define X(r,n,a,i) U(n=(T##n(*)a)v[i])
  NF
  R 1;}
+#if _WIN32
+ZI stdinred(I *ifd,I *nfd){HANDLE h=CreateFile("nul",GENERIC_READ,0,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);P(INVALID_HANDLE_VALUE==h,-1);
+              P(-1==(*nfd=_open_osfhandle((intptr_t)h,0)),*nfd);
+              P(-1==(*ifd=dup(fileno(stdin))),*ifd);
+              P(-1==dup2(*nfd,fileno(stdin)),-1);
+              R 0;}
+ZI stdinres(I ifd,I nfd){dup2(ifd,fileno(stdin));CloseHandle((HANDLE)_get_osfhandle(nfd));R 0;}
+#else
+ZI stdinred(I *ifd,I *nfd){R 0;}ZI stdinres(I ifd,I nfd){R 0;}
+#endif
