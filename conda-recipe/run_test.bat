@@ -4,7 +4,7 @@ if not defined QLIC (
 echo 0N!`qruns | q
 echo run tests
 conda install -y -q --file tests\requirements.txt
-q test.q <nul || goto :error
+q test.q || goto :error
 echo done
 exit /b 0
 
