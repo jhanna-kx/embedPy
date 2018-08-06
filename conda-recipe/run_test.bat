@@ -1,11 +1,8 @@
 if not defined QLIC (
  goto :nokdb
 )
-echo 0N!`qruns | q
-echo run tests
 conda install -y -q --file tests\requirements.txt
-q test.q || goto :error
-echo done
+q test.q -q || goto :error
 exit /b 0
 
 :error

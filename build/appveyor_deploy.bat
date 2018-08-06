@@ -8,9 +8,7 @@ if "%APPVEYOR_REPO_TAG%"=="true" (
 appveyor PushArtifact %ZIPNAME%                                 || goto :error
 if "%APPVEYOR_REPO_TAG%"=="true" (
  for /F "tokens=*" %%P in (packagenames.txt) do anaconda -t %CONDATOKEN% upload -l dev %%P || goto :error
-) else (
- for /F "tokens=*" %%P in (packagenames.txt) do echo PACKAGENAME %%P || goto :error
-)
+) 
 
 exit /b 0
 :error
