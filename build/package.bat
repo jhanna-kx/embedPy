@@ -6,10 +6,6 @@ if "%APPVEYOR_REPO_TAG%"=="true" (
 )
 7z a %ZIPNAME% p.q p.k test.q tests w64/p.dll LICENSE README.md || goto :error
 appveyor PushArtifact %ZIPNAME%                                 || goto :error
-if "%APPVEYOR_REPO_TAG%"=="true" (
- for /F "tokens=*" %%P in (packagenames.txt) do anaconda -t %CONDATOKEN% upload -l dev %%P || goto :error
-) 
-
 exit /b 0
 :error
 exit /b %errorLevel%

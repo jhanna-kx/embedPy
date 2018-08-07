@@ -8,12 +8,14 @@ platform: x64
 build_script:
 - cmd: >-
 
-    call build\appveyor_build.bat
+    call build\build.bat
 
 after_build:
 - cmd: >-
 
-    call build\appveyor_deploy.bat
+    call build\package.bat
+
+    call build\anaconda_upload.bat
 
 deploy:
  release: $(appveyor_repo_tag_name)
